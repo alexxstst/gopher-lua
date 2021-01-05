@@ -7,7 +7,7 @@ import (
 )
 
 func TestPerformanceLua(t *testing.T) {
-	var luaCode = "local function fib(n)\n if n < 2 then return n end\n    return fib(n - 2) + fib(n - 1)\nend\n\n for i = 1, 10 do fib(35) \nend"
+	var luaCode = "local function fib(n)\n if n < 2 then return n end\n    return fib(n - 2) + fib(n - 1)\nend\n\n for i = 1, 1 do fib(35) \nend"
 	fmt.Println("Start golua-fib")
 	start := time.Now()
 	L := NewState()
