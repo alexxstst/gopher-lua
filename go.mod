@@ -1,4 +1,4 @@
-module github.com/alexxst/gopher-lua
+module github.com/alexxstst/gopher-lua
 
 go 1.15
 
