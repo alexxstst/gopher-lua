@@ -1573,23 +1573,22 @@ func opUNM(L *LState, inst uint32, baseframe *callFrame) int { //OP_UNM
 }
 
 func opArith(L *LState, inst uint32, baseframe *callFrame) int { //OP_ADD, OP_SUB, OP_MUL, OP_DIV, OP_MOD, OP_POW
-	reg := L.reg
-	cf := L.currentFrame
-	lbase := cf.LocalBase
-	A := int(inst>>18) & 0xff //GETA
-	RA := lbase + A
-	opcode := int(inst >> 26) //GETOPCODE
-	B := int(inst & 0x1ff)    //GETB
-	C := int(inst>>9) & 0x1ff //GETC
-	lhs := L.rkValue(B)
-	rhs := L.rkValue(C)
+	lhs := L.rkValue(int(inst & 0x1ff))
+	rhs := L.rkValue(int(inst>>9) & 0x1ff)
 	v1, ok1 := lhs.assertFloat64()
 	v2, ok2 := rhs.assertFloat64()
+
+	RA := L.currentFrame.LocalBase + int(inst>>18) & 0xff
+	opcode := int(inst >> 26) //GETOPCODE
+
 	if ok1 && ok2 {
-		reg.SetNumber(RA, numberArith(L, opcode, LNumber(v1), LNumber(v2)))
+		value := numberArith(opcode, LNumber(v1), LNumber(v2))
+		L.reg.SetNumber(RA, value)
 	} else {
-		reg.Set(RA, objectArith(L, opcode, lhs, rhs))
+		attr := objectArith(L, opcode, lhs, rhs)
+		L.reg.Set(RA, attr)
 	}
+
 	return 0
 }
 
@@ -1603,7 +1602,7 @@ func luaModulo(lhs, rhs LNumber) LNumber {
 	return LNumber(v)
 }
 
-func numberArith(L *LState, opcode int, lhs, rhs LNumber) LNumber {
+func numberArith(opcode int, lhs, rhs LNumber) LNumber {
 	switch opcode {
 	case OP_ADD:
 		return lhs + rhs
@@ -1660,7 +1659,7 @@ func objectArith(L *LState, opcode int, lhs, rhs LValue) LValue {
 	}
 	if v1, ok1 := lhs.assertFloat64(); ok1 {
 		if v2, ok2 := rhs.assertFloat64(); ok2 {
-			return numberArith(L, opcode, LNumber(v1), LNumber(v2))
+			return numberArith(opcode, LNumber(v1), LNumber(v2))
 		}
 	}
 	L.RaiseError(fmt.Sprintf("cannot perform %v operation between %v and %v",
