@@ -3,18 +3,18 @@
 GopherLua: VM and compiler for Lua in Go.
 ===============================================================================
 
-.. image:: https://godoc.org/github.com/yuin/gopher-lua?status.svg
-    :target: http://godoc.org/github.com/yuin/gopher-lua
+.. image:: https://godoc.org/github.com/alexxst/gopher-lua?status.svg
+    :target: http://godoc.org/github.com/alexxst/gopher-lua
 
-.. image:: https://travis-ci.org/yuin/gopher-lua.svg
-    :target: https://travis-ci.org/yuin/gopher-lua
+.. image:: https://travis-ci.org/alexxst/gopher-lua.svg
+    :target: https://travis-ci.org/alexxst/gopher-lua
 
-.. image:: https://coveralls.io/repos/yuin/gopher-lua/badge.svg
-    :target: https://coveralls.io/r/yuin/gopher-lua
+.. image:: https://coveralls.io/repos/alexxst/gopher-lua/badge.svg
+    :target: https://coveralls.io/r/alexxst/gopher-lua
 
 .. image:: https://badges.gitter.im/Join%20Chat.svg
-    :alt: Join the chat at https://gitter.im/yuin/gopher-lua
-    :target: https://gitter.im/yuin/gopher-lua?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+    :alt: Join the chat at https://gitter.im/alexxst/gopher-lua
+    :target: https://gitter.im/alexxst/gopher-lua?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
 
 |
 
@@ -46,7 +46,7 @@ GopherLua is not fast but not too slow, I think.
 
 GopherLua has almost equivalent ( or little bit better ) performance as Python3 on micro benchmarks.
 
-There are some benchmarks on the `wiki page <https://github.com/yuin/gopher-lua/wiki/Benchmarks>`_ .
+There are some benchmarks on the `wiki page <https://github.com/alexxst/gopher-lua/wiki/Benchmarks>`_ .
 
 ----------------------------------------------------------------
 Installation
@@ -54,7 +54,7 @@ Installation
 
 .. code-block:: bash
 
-   go get github.com/yuin/gopher-lua
+   go get github.com/alexxst/gopher-lua
 
 GopherLua supports >= Go1.9.
 
@@ -71,7 +71,7 @@ Import a package.
 .. code-block:: go
 
    import (
-       "github.com/yuin/gopher-lua"
+       "github.com/alexxst/gopher-lua"
    )
 
 Run scripts in the VM.
@@ -92,9 +92,9 @@ Run scripts in the VM.
        panic(err)
    }
 
-Refer to `Lua Reference Manual <http://www.lua.org/manual/5.1/>`_ and `Go doc <http://godoc.org/github.com/yuin/gopher-lua>`_ for further information.
+Refer to `Lua Reference Manual <http://www.lua.org/manual/5.1/>`_ and `Go doc <http://godoc.org/github.com/alexxst/gopher-lua>`_ for further information.
 
-Note that elements that are not commented in `Go doc <http://godoc.org/github.com/yuin/gopher-lua>`_ equivalent to `Lua Reference Manual <http://www.lua.org/manual/5.1/>`_ , except GopherLua uses objects instead of Lua stack indices.
+Note that elements that are not commented in `Go doc <http://godoc.org/github.com/alexxst/gopher-lua>`_ equivalent to `Lua Reference Manual <http://www.lua.org/manual/5.1/>`_ , except GopherLua uses objects instead of Lua stack indices.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Data model
@@ -244,7 +244,7 @@ Miscellaneous lua.NewState options
 API
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Refer to `Lua Reference Manual <http://www.lua.org/manual/5.1/>`_ and `Go doc(LState methods) <http://godoc.org/github.com/yuin/gopher-lua>`_ for further information.
+Refer to `Lua Reference Manual <http://www.lua.org/manual/5.1/>`_ and `Go doc(LState methods) <http://godoc.org/github.com/alexxst/gopher-lua>`_ for further information.
 
 +++++++++++++++++++++++++++++++++++++++++
 Calling Go from Lua
@@ -343,7 +343,7 @@ mymodule.go
     package mymodule
 
     import (
-        "github.com/yuin/gopher-lua"
+        "github.com/alexxst/gopher-lua"
     )
 
     func Loader(L *lua.LState) int {
@@ -373,7 +373,7 @@ mymain.go
 
     import (
         "./mymodule"
-        "github.com/yuin/gopher-lua"
+        "github.com/alexxst/gopher-lua"
     )
 
     func main() {
@@ -681,7 +681,7 @@ Go API
 
 ``ToChannel``, ``CheckChannel``, ``OptChannel`` are available.
 
-Refer to `Go doc(LState methods) <http://godoc.org/github.com/yuin/gopher-lua>`_ for further information.
+Refer to `Go doc(LState methods) <http://godoc.org/github.com/alexxst/gopher-lua>`_ for further information.
 
 '''''''''''''''
 Lua API
@@ -838,22 +838,22 @@ Lua has an interpreter called ``lua`` . GopherLua has an interpreter called ``gl
 
 .. code-block:: bash
 
-   go get github.com/yuin/gopher-lua/cmd/glua
+   go get github.com/alexxst/gopher-lua/cmd/glua
 
 ``glua`` has same options as ``lua`` .
 
 ----------------------------------------------------------------
 How to Contribute
 ----------------------------------------------------------------
-See `Guidlines for contributors <https://github.com/yuin/gopher-lua/tree/master/.github/CONTRIBUTING.md>`_ .
+See `Guidlines for contributors <https://github.com/alexxst/gopher-lua/tree/master/.github/CONTRIBUTING.md>`_ .
 
 ----------------------------------------------------------------
 Libraries for GopherLua
 ----------------------------------------------------------------
 
 - `gopher-luar <https://github.com/layeh/gopher-luar>`_ : Simplifies data passing to and from gopher-lua
-- `gluamapper <https://github.com/yuin/gluamapper>`_ : Mapping a Lua table to a Go struct
-- `gluare <https://github.com/yuin/gluare>`_ : Regular expressions for gopher-lua
+- `gluamapper <https://github.com/alexxst/gluamapper>`_ : Mapping a Lua table to a Go struct
+- `gluare <https://github.com/alexxst/gluare>`_ : Regular expressions for gopher-lua
 - `gluahttp <https://github.com/cjoudrey/gluahttp>`_ : HTTP request module for gopher-lua
 - `gopher-json <https://github.com/layeh/gopher-json>`_ : A simple JSON encoder/decoder for gopher-lua
 - `gluayaml <https://github.com/kohkimakimoto/gluayaml>`_ : Yaml parser for gopher-lua
